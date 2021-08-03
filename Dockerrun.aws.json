@@ -9,18 +9,6 @@
       "memory": 128
     },
     {
-      "name": "nginx",
-      "image": "zoltot1/multi-nginx",
-      "hostname": "nginx",
-      "essential": true,
-      "portMappings": [{
-        "hostPort": 80,
-        "containerPort": 80
-      }],
-      "link": ["client", "api"],
-      "memory": 128
-    },
-    {
       "name": "server",
       "image": "zoltot1/multi-server",
       "hostname": "api",
@@ -32,6 +20,20 @@
       "image": "zoltot1/multi-worker",
       "hostname": "worker",
       "essential": false,
+      "memory": 128
+    },
+    {
+      "name": "nginx",
+      "image": "zoltot1/multi-nginx",
+      "hostname": "nginx",
+      "essential": true,
+      "portMappings": [
+        {
+          "hostPort": 80,
+          "containerPort": 80
+        }
+      ],
+      "links": ["client", "server"],
       "memory": 128
     }
   ]
